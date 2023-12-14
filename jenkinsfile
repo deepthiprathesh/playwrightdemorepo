@@ -10,17 +10,14 @@ pipeline {
                 npm install tesseract.js
                 '''
             }
-            
         }
         stage('Run tests') {
-            
             steps {
                 sh '''
                 npx playwright test --list
                 npx playwright test tesseractdemo.test.ts --project chromium 
                 '''
             }
-           
             }
         }
     }
