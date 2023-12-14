@@ -1,0 +1,26 @@
+pipeline {
+    agent { 
+                label 'agent-01'
+            }
+    stages {
+        stage('Install Playwright') {
+            steps {
+                sh '''
+                npm install playwright typescript --save-dev
+                npm install tesseract.js
+                '''
+            }
+            
+        }
+        stage('Run tests') {
+            
+            steps {
+                sh '''
+                npx playwright test --list
+                npx playwright test tesseractdemo.test.ts --project chromium 
+                '''
+            }
+           
+            }
+        }
+    }
